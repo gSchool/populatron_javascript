@@ -1,9 +1,10 @@
-const fs = require('fs');
-
 class PopulationCounter {
+    constructor(fileReader) {
+        this.fileReader = fileReader;
+    }
+
     count(filename) {
-        const text = fs.readFileSync(filename, 'utf-8'); // file IO
-        const lines = text.split('\n'); // parsing
+        const lines = this.fileReader.readAllLines(filename);
         let sum = 0; // counting
         for(let i = 1; i < lines.length; i++) { // counting
             const line = lines[i]; // parsing

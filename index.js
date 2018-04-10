@@ -1,6 +1,8 @@
 const PopulationCounter = require('./PopulationCounter');
+const FileReader = require('./FileReader');
 
-const populationCounter = new PopulationCounter();
+const reader = new FileReader();
+const populationCounter = new PopulationCounter(reader);
 const path = process.argv[2];
 
 const response = populationCounter.count(path);
