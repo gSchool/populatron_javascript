@@ -1,6 +1,6 @@
 const {expect} = require('chai');
 
-describe('The population counter', () => {
+describe('The app', () => {
     it('should print the count', () => {
         let calledWidth;
         process.argv[2] = './data/worldcitiespop.csv';

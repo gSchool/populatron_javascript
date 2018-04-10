@@ -1,7 +1,6 @@
-const fs = require('fs');
-const sinon = require('sinon');
 const {expect} = require('chai');
 
+const CsvParser = require('../CsvParser');
 const MockFileReader = require('./MockFileReader');
 const PopulationCounter = require('../PopulationCounter');
 
@@ -12,8 +11,9 @@ describe('The population counter', () => {
             'Country,City,AccentCity,Region,Population',
             'us,Denver,Denver,Colorado,2000000'
         ];
+        const parser = new CsvParser();
         const reader = new MockFileReader(lines);
-        const cut = new PopulationCounter(reader);
+        const cut = new PopulationCounter(reader, parser);
         const expectedPath = '/some/path';
 
         // exercise
