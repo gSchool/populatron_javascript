@@ -1,0 +1,11 @@
+# IDEA
+.idea/
+*.ipr
+*.iws
+*.iml
+
+# node
+node_modules/
+
+# vscode
+.vscode/
