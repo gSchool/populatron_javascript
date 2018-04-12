@@ -11,7 +11,7 @@
 
 ## Rationale
 
-Real-life applications are complex. Naive programmers programmers will create complex monoliths which are hard to test.
+Real-life applications are complex. Naive programmers will create complex monoliths which are hard to test.
 
 Adherents to TDD will create complex applications composed of simple modules.
 
