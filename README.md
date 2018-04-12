@@ -29,7 +29,7 @@ Now it is time for you to refactor this monolith into smaller classes, writing u
 
 ## TODO
 
-1. Isolate the entry point from the application class. No notion command line arguments or console output should leak into the application class itself. If this was turned into a web-based app tomorrow, it should be easy.
+1. Isolate the entry point from the application class. No notion of command line arguments or console output should leak into the application class itself. If this was turned into a web-based app tomorrow, it should be easy.
 1. Isolate file IO from the app. Disk access is brittle (incorrect paths, disk full, access denied). Refactor file IO into its own class so it can be mocked.
 1. Use sinon to mock and inject your file IO class.
 1. Isolate your CSV parsing logic from your app by refactoring it into a parser that returns an generic list of objects.
@@ -45,7 +45,7 @@ Below are some questions you can ask yourself to determine if your code is TDD c
 1. If you set a breakpoint in the constructor of all objects, and you run your unit test, does more than one breakpoint get hit? If so, you aren't mocking sufficiently. 
 1. Do your methods mutate any variables? Can you refactor them to be immutable? 
 
-Remember these questions, because they apply to all code, not just the code you have written in for this exercise.
+Remember these questions, because they apply to all code, not just the code you have written for this exercise.
 
 ## Stretch
 
