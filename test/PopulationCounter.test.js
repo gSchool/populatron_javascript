@@ -1,26 +1,45 @@
-const {expect} = require('chai');
+/* eslint-env mocha */
 
-const CsvParser = require('../CsvParser');
-const MockFileReader = require('./MockFileReader');
-const PopulationCounter = require('../PopulationCounter');
+const { expect } = require('chai')
+const sinon = require('sinon')
+
+const PopulationCounter = require('../PopulationCounter')
 
 describe('The population counter', () => {
-    it('should print the count', () => {
-        // setup
-        const lines = [
-            'Country,City,AccentCity,Region,Population',
-            'us,Denver,Denver,Colorado,2000000'
-        ];
-        const parser = new CsvParser();
-        const reader = new MockFileReader(lines);
-        const cut = new PopulationCounter(reader, parser);
-        const expectedPath = '/some/path';
+  it('should print the count', () => {
+    // setup
+    const expectedPath = '/some/path'
 
-        // exercise
-        const actual = cut.count(expectedPath);
+    const file = 'Country,City,AccentCity,Region,Population\nus,Denver,Denver,Colorado,2000000'
 
-        // assert
-        expect(reader.path).to.equal(expectedPath);
-        expect(actual).to.equal('World population is: 2,000,000');
-    })
-});
+    const parsed = [
+      {
+        'Country': 'us',
+        'City': 'Denver',
+        'AccentCity': 'Denver',
+        'Region': 'Colorado',
+        'Population': '2000000'
+      }
+    ]
+
+    const expected = 'World population is: 2,000,000'
+
+    const reader = {
+      read: sinon.stub().returns(file)
+    }
+
+    const parser = {
+      parse: sinon.stub().returns(parsed)
+    }
+
+    const instanceUnderTest = new PopulationCounter(reader, parser)
+
+    // exercise
+    const actual = instanceUnderTest.count(expectedPath)
+
+    // assert
+    expect(reader.read.calledWith(expectedPath)).to.equal(true)
+    expect(parser.parse.calledWith(file)).to.equal(true)
+    expect(actual).to.equal(expected)
+  })
+})

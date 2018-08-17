@@ -1,11 +1,11 @@
-const fs = require('fs');
 
 class FileReader {
-    readAllLines(filename) {
-        const text = fs.readFileSync(filename, 'utf-8'); // file IO
-        const lines = text.split('\n'); // file IO
-        return lines;
-    }
+  constructor (fs) {
+    this.fs = fs
+  }
+  read (filename) {
+    return this.fs.readFileSync(filename, 'utf-8') // file IO
+  }
 }
 
-module.exports = FileReader;
+module.exports = FileReader

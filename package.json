@@ -12,6 +12,14 @@
   },
   "scripts": {
     "start": "node index.js ./data/worldcitiespop.csv",
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "standard"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "standard": "^11.0.1"
   }
 }
