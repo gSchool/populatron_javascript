@@ -16,5 +16,5 @@ describe('The population counter', () => {
 
         // assert
         expect(consoleOut[0]).to.equal('World population is: 1,347,982,728');
-    })
+    }).timeout(5000)
 });
