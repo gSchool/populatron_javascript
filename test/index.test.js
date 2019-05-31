@@ -1,5 +1,3 @@
-const {expect} = require('chai');
-
 describe('The population counter', () => {
     it('prints the total world population', () => {
         // setup
@@ -15,6 +13,6 @@ describe('The population counter', () => {
         console.log = oldLog
 
         // assert
-        expect(consoleOut[0]).to.equal('World population is: 1,347,982,728');
-    }).timeout(5000)
+        expect(consoleOut[0]).toEqual('World population is: 1,347,982,728');
+    })
 });

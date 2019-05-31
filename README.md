@@ -2,7 +2,6 @@
 
 ## Objectives
 
-- Practice outside-in testing with TDD
 - Refactor code into testable units
 - Isolate and mock dependencies that use IO
 - Isolate application from entry point 
