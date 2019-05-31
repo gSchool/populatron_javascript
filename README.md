@@ -5,7 +5,7 @@
 - Refactor code into testable units
 - Isolate and mock dependencies that use IO
 - Isolate application from entry point 
-- Use sinon to mock functions
+- Use jest to mock functions
 - Use behavior-based and state-based testing techniques
 
 ## Rationale
@@ -30,7 +30,7 @@ Now it is time for you to refactor this monolith into smaller classes, writing u
 
 1. Isolate the entry point from the application class. No notion of command line arguments or console output should leak into the application class itself. If this was turned into a web-based app tomorrow, it should be easy.
 1. Isolate file IO from the app. Disk access is brittle (incorrect paths, disk full, access denied). Refactor file IO into its own class so it can be mocked.
-1. Use sinon to mock and inject your file IO class.
+1. Use jest to mock and inject your file IO class.
 1. Isolate your CSV parsing logic from your app by refactoring it into a parser that returns an generic list of objects.
 
 ## Verification
