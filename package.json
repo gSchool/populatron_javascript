@@ -6,7 +6,7 @@
   "author": "RachelKoldenhoven <rachel@koldenfrozen.com>",
   "license": "MIT",
   "dependencies": {
-    "jest": "^24.8.0"
+    "jest": "latest"
   },
   "scripts": {
     "start": "node index.js ./data/worldcitiespop.csv",
