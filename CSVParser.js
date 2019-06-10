@@ -1,6 +1,10 @@
 class CSVParser {
 
-    parse(fileData) {
+    constructor(fileData) {
+        this.fileData = fileData;
+    }
+
+    parse(fileData = this.fileData) {
         const lines = fileData.split('\n')
         if (lines.length === 1) {
             return []

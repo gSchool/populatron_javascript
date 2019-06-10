@@ -3,11 +3,13 @@ class PopulationCounter {
         this.parser = parser
     }
 
-    count(fileData) {
-        const parsedData = this.parser.parse(fileData)
+    count() {
+        const parsedData = this.parser.parse()
         if(!parsedData.length){
             return 0
         }
+
+        return +parsedData[0].population
     }
 }
 

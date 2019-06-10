@@ -16,6 +16,21 @@ describe('CSVParser', () => {
         // Teardown
     });
 
+    it('parse returns empty array if data is empty', () => {
+        // Setup
+        const fileData = ''
+        const parser = new CSVParser(fileData)
+        const expected = []
+
+        // Exercise
+        const actual = parser.parse()
+
+        // Assert
+        expect(actual).toEqual(expected)
+
+        // Teardown
+    });
+
     it('parse returns an array with { foo: "bar"} ', () => {
         // Setup
         const parser = new CSVParser()
@@ -116,8 +131,6 @@ describe('CSVParser', () => {
 
         // Exercise
         const actual = parser.parse(fileData)
-
-        console.log(actual)
 
         // Assert
         expect(Object.keys(actual[0])).toEqual(Object.keys(expected[0]))
