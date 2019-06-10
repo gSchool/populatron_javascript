@@ -5,21 +5,18 @@ class CSVParser {
         if (lines.length === 1) {
             return []
         }
-        const headers = lines[0]
-        const fields = headers.split(',')
-        if(fields.length > 1){
-            return [
-                fields.reduce((record, field) => {
-                record[field] = undefined;
-                return record
-            }, {})
-            ]
-        }
 
-        const values = lines[1]
-        const record = {}
-        record[headers] = values ? values : undefined
-        return [record]
+        const fieldNames = lines.shift().split(',')
+
+        return lines
+            .map((line) => line.split(','))
+            .map((fields) => fields.concat(new Array(fieldNames.length - fields.length).fill(undefined)))
+            .map((fields) => {
+                return fields.reduce((record, fieldValue, index) => {
+                    record[fieldNames[index]] = fieldValue ? fieldValue : undefined;
+                    return record
+                }, {})
+            })
     }
 }
 

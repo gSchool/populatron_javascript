@@ -117,17 +117,19 @@ describe('CSVParser', () => {
         // Exercise
         const actual = parser.parse(fileData)
 
+        console.log(actual)
+
         // Assert
         expect(Object.keys(actual[0])).toEqual(Object.keys(expected[0]))
 
         // Teardown
     });
 
-    it('parse returns an array with {do: undefined, re: undefined, mi: undefined}', () => {
+    it('parse returns an array with {do: undefined, re: undefined}', () => {
         // Setup
         const parser = new CSVParser()
-        const fileData = 'do,re,mi\n'
-        const expected = [{do: undefined, re: undefined, mi: undefined}]
+        const fileData = 'do,re\n'
+        const expected = [{do: undefined, re: undefined}]
 
         // Exercise
         const actual = parser.parse(fileData)
@@ -138,17 +140,78 @@ describe('CSVParser', () => {
         // Teardown
     });
 
-    it('parse returns an array with {a: undefined, b: undefined, c: undefined}', () => {
+    it('parse returns an array with {a: undefined, b: undefined}', () => {
         // Setup
         const parser = new CSVParser()
-        const fileData = 'a,b,c\n'
-        const expected = [{a: undefined, b: undefined, c: undefined}]
+        const fileData = 'a,b\n'
+        const expected = [{a: undefined, b: undefined}]
 
         // Exercise
         const actual = parser.parse(fileData)
 
         // Assert
         expect(Object.keys(actual[0])).toEqual(Object.keys(expected[0]))
+
+        // Teardown
+    });
+
+    it('parse returns an array with {c: "charlie", d: "delta"}', () => {
+        // Setup
+        const parser = new CSVParser()
+        const fileData = 'c,d\ncharlie,delta'
+        const expected = [{c: "charlie", d: "delta"}]
+
+        // Exercise
+        const actual = parser.parse(fileData)
+
+        // Assert
+        expect(actual).toEqual(expected)
+
+        // Teardown
+    });
+
+    it('parse returns an array with {baba: "yetu", michael: "jackson"}', () => {
+        // Setup
+        const parser = new CSVParser()
+        const fileData = 'baba,michael\nyetu,jackson'
+        const expected = [{baba: "yetu", michael: "jackson"}]
+
+        // Exercise
+        const actual = parser.parse(fileData)
+
+        // Assert
+        expect(actual).toEqual(expected)
+
+        // Teardown
+    });
+
+
+    it('parse returns an array with {f: "foxtrot", g: "golf"}, {f: "hotel", g: "india"}' , () => {
+        // Setup
+        const parser = new CSVParser()
+        const fileData = 'f,g\nfoxtrot,golf\nhotel,india'
+        const expected = [{f: "foxtrot", g: "golf"}, {f: "hotel", g: "india"}]
+
+        // Exercise
+        const actual = parser.parse(fileData)
+
+        // Assert
+        expect(actual).toEqual(expected)
+
+        // Teardown
+    });
+
+    it('parse returns an array with {f: "foxtrot", g: "golf"}, {f: "hotel", g: undefined}' , () => {
+        // Setup
+        const parser = new CSVParser()
+        const fileData = 'f,g\nfoxtrot,golf\nhotel,'
+        const expected = [{f: "foxtrot", g: "golf"}, {f: "hotel", g: undefined}]
+
+        // Exercise
+        const actual = parser.parse(fileData)
+
+        // Assert
+        expect(actual).toEqual(expected)
 
         // Teardown
     });
