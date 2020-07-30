@@ -1,11 +1,18 @@
-describe('The app', () => {
-  it('should print the count', () => {
-    let calledWidth
+describe('The population counter', () => {
+  it('prints the total world population', () => {
+    // setup
     process.argv[2] = './data/worldcitiespop.csv'
+    const oldLog = console.log
+    let consoleOut
     console.log = (...args) => {
-      calledWidth = args
+      consoleOut = args
     }
+
+    // execute
     const cut = require('../index.js')
-    expect(calledWidth[0]).toEqual('World population is: 1,347,982,728')
+    console.log = oldLog
+
+    // assert
+    expect(consoleOut[0]).toEqual('World population is: 1,347,982,728')
   })
 })
