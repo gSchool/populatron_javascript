@@ -1,28 +1,26 @@
-const fs = require('fs');
-const sinon = require('sinon');
-const {expect} = require('chai');
+const fs = require('fs')
 
-const FileReader = require('../FileReader');
+const FileReader = require('../FileReader')
+
+jest.mock('fs')
 
 describe('The FileReader', () => {
-    it('should read all lines', () => {
-        // setup
-        const csvText = `Country,City,AccentCity,Region,Population
-us,Denver,Denver,Colorado,2000000`;
-        const stub = sinon.stub(fs, 'readFileSync');
-        stub.returns(csvText);
-        const expectedPath = '/some/path';
+  it('should read all lines', () => {
+    // setup
+    const csvText = `Country,City,AccentCity,Region,Population
+us,Denver,Denver,Colorado,2000000`
+    const stub = fs.readFileSync.mockReturnValue(csvText)
+    const expectedPath = '/some/path'
 
-        // exercise
-        const actual = new FileReader().readAllLines(expectedPath);
+    // exercise
+    const actual = new FileReader().readAllLines(expectedPath)
 
-        // assert
-        expect(stub.calledWith(expectedPath)).to.be.true;
-        expect(actual.length).to.equal(2);
-        expect(actual[0]).to.equal('Country,City,AccentCity,Region,Population');
-        expect(actual[1]).to.equal('us,Denver,Denver,Colorado,2000000');
+    // assert
+    expect(stub).toHaveBeenCalledWith(expectedPath, 'utf-8')
+    expect(actual.length).toEqual(2)
+    expect(actual[0]).toEqual('Country,City,AccentCity,Region,Population')
+    expect(actual[1]).toEqual('us,Denver,Denver,Colorado,2000000')
 
-        // teardown
-        stub.restore();
-    })
-});
+    // teardown
+  })
+})
